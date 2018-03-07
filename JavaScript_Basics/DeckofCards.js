@@ -1,6 +1,6 @@
 class Deck {
   constructor(){
-    self.cardList = newList();
+    this.cardList = newList();
   }
   display(){
     console.log(cardList.length);
