@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Group Chat</title>
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var socket = io.connect();
+				var messageForm = $('#messageForm');
+				var message = $('#type');
+				var chat = $('#chat');
+				var userForm = $('#UserForm');
+				var adduser = $('#adduser');
+				var username = $('#username');
+				var allusers = $('#allusers');
+				var body = $('#body');
+				var msgs = '';
+				var error = $('#error');
+				messageForm.submit(function(e){
+					e.preventDefault();
+					console.log('submited');
+					socket.emit('send', message.val());
+					message.val('');
+				});
+				userForm.submit(function(e){
+					e.preventDefault();
+					socket.emit('new user', username.val(), function(data){
+						if(data){
+							adduser.hide();
+							body.show();
+						}
+						else{
+							error.html('That Username is already taken!');
+						}	
+					});
+					socket.emit('page load');
+					username.val('');
+				});
+				socket.on('load', function(data){
+					msgs = '';
+					for(let y = 0; y<data.length; y++){
+						msgs += '<p class="displaymsg"><strong>'+data[y].user+'</strong>: '+ data[y].msg + '</p>';
+					}
+					chat.html(msgs);
+				});
+				socket.on('append', function(data){
+					msgs = '';
+					for(let x = 0; x<data.length; x++){
+						msgs += '<p class="displaymsg"><strong>'+data[x].user+'</strong>: '+ data[x].msg + '</p>';
+					}
+					chat.html(msgs);
+				});
+				socket.on('get users', function(data){
+					var html = '';
+					for(let i = 0; i<data.length; i++){
+						html += '<h5 class="eachuser">'+data[i]+'</h5>';
+					}
+					allusers.html('<div class="nav-wrapper"><h3>Online:</h3></div>' +html);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="adduser" class="adduser">
+			<p id="error"></p>
+			<form id="UserForm">
+				<input id="username" type="text" name="newuser" placeholder="Create Username">
+				<button class="btn waves-effect waves-light" id="newuser"><i class='material-icons right'>OK</i></button>
+			</form>
+		</div>
+		<div id="body" class="body">
+			<div class="wrapper">
+				<u><h1>Conversation Board</h1></u>
+				<div id="chat" class="Board">
+					
+				</div>
+				<div class="newmsg">
+					<form id="messageForm">
+						<input id="type" type="text" name="newmsg" placeholder="Enter your message here...">
+						<button class="btn waves-effect waves-light" id="button"><i class='material-icons right'>Send</i></button>
+					</form>
+				</div>
+			</div>
+			<div id="allusers" class="users">
+				<h3 class="onlineUsers">Online:</h3>
+			</div>
+		</div>
+	</body>
+</html>
