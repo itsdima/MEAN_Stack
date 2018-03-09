@@ -1,0 +1,26 @@
+.wrapper{
+	width: 800px; 
+	height: 600px;
+	text-align: center;
+}
+
+.epic{
+	width: 500px; 
+	height: 200px; 
+	color: white; 
+	background-color: blue; 
+	border-radius: 10px; 
+	border: 2px solid black; 
+	font-size: 20px; 
+}
+
+.reset{
+	color: white; 
+	background-color: red; 
+	border: 2px solid black; 
+	height: 50px; 
+	width: 150px; 
+	display: block;
+	margin-top: 100px;
+	margin-left: 500px;   
+}
