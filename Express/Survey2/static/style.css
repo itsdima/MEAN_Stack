@@ -1,0 +1,28 @@
+.main {
+	width: 400px; 
+	height: 250px; 
+	border: 2px solid black; 
+}
+
+.submit {
+	color: white; 
+	background-color: blue; 
+	border: 1px solid black; 
+}
+
+.container{
+	margin: 0 auto;
+	width: 500px; 
+}
+.comment{
+	width: 200px; 
+	height: 75px;
+}
+
+#append {
+	max-width: 400px; 
+	border: 2px solid black; 
+	margin-bottom: 10px;
+	display: none;
+	background-color: green;
+}

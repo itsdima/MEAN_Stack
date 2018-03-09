@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Survey</title>
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var socket = io.connect();
+				$('button').click(function(){
+					socket.emit('posting_form', {name: document.getElementById('name').value,
+													location: document.getElementById('location').value,
+													language: document.getElementById('language').value,
+													comment: document.getElementById('comment').value });
+					console.log('click worked');
+				});
+				socket.on('updated_message', function(data){
+					$('#append').html('<p>You emitted the following information to the server:</p>'+
+						'<p>Name: '+ data.name + '</p><p>Location: '+data.location+'</p><p>Language: '+data.language+'</p><p>Comment: '+data.comment+'</p>');
+					if($('#append').is(':hidden')){
+						$('#append').toggle();
+					};
+				});
+				socket.on('random_numer', function(data){
+					$('#append').append('<p>Your lucky number emmitted by the server is '+data.random+'</p>')
+				});
+			});
+
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div id="append">
+					
+			</div>
+			<div class="main">
+				<!-- <form> -->
+					<table>
+						<tbody>
+							<tr>
+								<td>Your Name:</td>
+								<td><input id="name" type="text" name="name"></td>
+							</tr>
+							<tr>
+								<td>Dojo Location:</td>
+								<td>
+									<select id="location" name="Location">
+										<option>Seattle</option>
+										<option>Dallas</option>
+										<option>Chicago</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Favorite Language:</td>
+								<td>
+									<select id="language" name="Language">
+										<option>JavaScript</option>
+										<option>Python</option>
+										<option>Java</option>
+										<option>C#</option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>Comment (optional):</p>
+					<textarea id="comment" class="comment" name="comment"></textarea>
+					<button class="submit">Submit</button>
+				<!-- </form> -->
+			</div>
+		</div>
+	</body>
+</html>
