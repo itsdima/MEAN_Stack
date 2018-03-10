@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hunting Github</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('button').click(function(){
+					function displayName(data){
+					$('#name').html('<h1>'+data.name+' AKA: '+data.login+'</h1>');
+					console.log(data);
+					};
+					$.get('https://api.github.com/users/itsdima', displayName);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<button>Request API</button>
+			<div id="name"></div>
+		</div>
+	</body>
+</html>
