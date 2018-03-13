@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Add Quote</title>
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<!--import bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--import javascript-->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<h1 class="main-title">Welcome to QuotingDojo!</h1>
+		<div id="wrapper" class="form-group">
+			<% if(typeof(errors) != 'undefined') { %>
+				<% for(let i in errors) { %>
+					<p style="color: red">
+					<%= errors[i].message %>
+					</p>
+				<% } %>
+			<% } %>
+			<form action="/process" method="post">
+				<div class="form-group">
+					<label for="formGroupExampleInput"><strong>Your Name:</strong></label>
+					<input type="text" name="name" class="form-control" placeholder="Name" id="formGroupExampleInput">
+				</div>
+				<div class="form-group">
+					<label for="formGroupExampleInput2"><strong>Your Quote:</strong></label>
+					<textarea name="quote" class="form-control" rows="3" id="formGroupExampleTextarea"></textarea>
+				</div>
+				<input type="submit" name="submit" class="btn btn-primary btn-lg" style="float: right;" id="submit" value="Add My Quote!">
+			</form>
+			<a href="/quotes"><input class="btn-success btn btn-lg" type="submit" name="skip" id="skip" value="Skip To Quotes!"></a>
+		</div>
+	</body>
+</html>

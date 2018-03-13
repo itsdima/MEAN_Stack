@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dojo Query</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				(function() {
+				var button = document.getElementById('button');
+				button.addEventListener('click', Click);
+				button.addEventListener('mouseover', In);
+				button.addEventListener('mouseout', Out);
+				function Click(data){
+					$(data.path[0]).css('color','red');
+				};
+				function In(data){
+					$(data.path[0]).css('background-color', 'blue');
+				};
+				function Out(data){
+					$(data.path[0]).css('background-color', '');
+				};
+			}());
+			});
+
+		</script>
+	</head>
+	<body>
+		<button id="button">TEST</button>
+	</body>
+</html>

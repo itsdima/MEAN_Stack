@@ -1,0 +1,24 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#wrapper{
+	width: 50%;
+	margin: 0 auto;
+}
+
+.main-title{
+	margin-top: 20px;
+	margin-bottom: 40px;
+	text-align: center;
+	font-style: italic;
+}
+
+.each-quote{
+	border-bottom: 4px solid silver;
+}
+
+.timestamp{
+	margin-left: 25%;
+}

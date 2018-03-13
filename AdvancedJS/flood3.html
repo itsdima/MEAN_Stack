@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FloodFill</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			*{
+    			margin: 0px;
+    			padding: 0px;
+			}
+			body{
+				font-family: Verdana, Geneva, Tahoma, sans-serif; 
+				font-size: 0;
+			}
+			div.row div{
+				width: 20px; 
+				height: 20px;  
+				display: inline-block;
+			}
+			#wrap{
+				width: 600px;
+				margin: auto;
+				margin-top: 5%;
+				border: 6px solid black;
+			}
+			#name{
+				color: blue;
+				font-size: 30px;
+				font-style: italic;
+				width: 600px;
+				text-align: center;
+				margin-top: 5%;
+				margin: auto;
+			}
+			#attempts{
+				color: red;
+				font-size: 20px;
+				font-style: italic;
+				width: 600px;
+				text-align: center;
+				margin-top: 5%;
+				margin: auto;
+			}
+		</style>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var world = [
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+				];
+				var colors = ['blue', 'red', 'yellow', 'green', 'silver', 'purple', 'green', 'orange'];
+				var output = "";
+				var attempts = 0;
+				$('#attempts').html('<h1>Total attempts: '+attempts+'</h1>');
+				for(var i = 0; i< world.length; i++){
+					output += "\n<div class='row'>";
+					for(var j = 0; j< world[i].length; j++){
+						var random = Math.floor(Math.random() * 8);
+						var randomColor = colors[random];
+						var innerGrid = [];
+						if(world[i][j] == 1){
+							output += "\n\t<div class='box' style='background-color:"+randomColor+"';></div>";
+						};
+					};
+					output += "\n</div>";
+				};
+				$('#wrap').html(output);
+				$('.box').click(function(){
+					attempts++
+					$('#attempts').html('<h1>Total attempts: '+attempts+'</h1>');
+					var NewColor = $(this).css('background-color');
+					var test = document.getElementById('wrap');
+					var OldColor = $(test.children[0].children[0]).css('background-color');
+					function FloodFill(puzzle, start, oldColor, newColor){
+  						// function Fill(puzzle1, start1, oldColor1, newColor1){
+  						var puzzle = puzzle; 
+						var xcore = 0;
+						var ycore = 0;
+						var temp; 
+						for(let x = 0; x < 13; x++){
+							for(let y = 0; y < 30; y++){
+								if(x == 0 && y == 0){
+									$(puzzle.children[x].children[y]).css('background-color', newColor);
+								}
+								else{
+									temp = $(puzzle.children[x].children[y]).css('background-color');
+									if(temp == newColor || temp == oldColor){
+										$(puzzle.children[x].children[y]).css('background-color', newColor);
+									}
+									else{
+										console.log('broke');
+										break;
+									}
+								}
+							}
+						}
+    					return puzzle;
+						};
+ 				 		// return Fill(puzzle, start, oldColor, newColor);
+  						// }
+  					FloodFill(test, [0 , 0], OldColor, NewColor);
+    
+  					});
+
+  				});
+		</script>
+
+	</head>
+	<body>
+		<div id="container">
+			<div id="name">
+				<h1>FloodFill</h1>
+			</div>
+			<div id="attempts">
+			</div>
+			<div id="wrap">
+				
+			</div>
+		</div>
+	</body>
+</html>
