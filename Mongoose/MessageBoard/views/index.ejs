@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Message Board</title>
+		<!--import bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--import javascript-->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.header{
+				border-bottom: 2px solid silver;
+				font-size: 50px;
+				font-style: italic;
+			}
+			.post-comments{
+				width: 75%;
+				margin: 0 auto;
+
+			}
+			.each-post{
+				margin-top: 75px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="header"><strong>The Dojo Message Board</strong></h1>
+			<form action="/processPost" method="post">
+				<div class="form-group">
+					<label for="formGroupExampleInput"><strong>Name:</strong></label>
+					<input type="text" name="name" class="form-control" placeholder="Name" id="formGroupExampleInput">
+				</div>
+				<div class="form-group">
+					<label for="formGroupExampleInput2"><strong>Message:</strong></label>
+					<textarea name="text" class="form-control" rows="3" id="formGroupExampleTextarea"></textarea>
+				</div>
+				<input type="submit" name="submit" class="btn btn-primary btn-lg" style="float: right;" value="Post Message!">
+			</form>
+			<% for(let i in posts){ %>
+				<div class="each-post">
+					<h1> Name: 
+					<%= posts[i].name %>
+					</h1>
+					<h1> Message: 
+					<%= posts[i].text %>
+					</h1>
+					<div class="post-comments">
+						<% for(let x=posts[i].comments.length-1; x>=0; x--) { %>
+							<p> Name:
+								<%= posts[i].comments[x].name %>
+							</p>
+							<p> Comment:
+								<%= posts[i].comments[x].text %>
+							</p>
+						<% } %>
+						<form action="/processComment/<%= posts[i].id %>" method="post">
+							<div class="form-group">
+								<label for="formGroupExampleInput"><strong>Name:</strong></label>
+								<input type="text" name="name" class="form-control" placeholder="Name" id="formGroupExampleInput3">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput4"><strong>Comment:</strong></label>
+								<textarea name="text" class="form-control" rows="3" id="formGroupExampleTextarea"></textarea>
+							</div>
+							<input type="submit" name="submit" class="btn btn-primary" style="float: right;" value="Post Comment!">
+						</form>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</body>
+</html>
