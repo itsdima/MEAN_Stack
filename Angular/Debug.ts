@@ -72,7 +72,7 @@ function study(programmer){
 // Now this has problems:
 console.log(study(turing)); //turing has its own construct for name and does not need to run through the ninja class, to fix I changed study function to accept a parameter and not require ninja as a parameter
 
-
+----------------------------------------------------------------------------------------------------------
 var increment = x => x + 1;
 // This works great:
 console.log(increment(3));
@@ -89,7 +89,7 @@ var math = (x, y) => {
     return [sum, product, difference];
 }
 
-
+-----------------------------------------------------------------------------------------------
 class Elephant {
    constructor(public age: number){}
    birthday = () => {
