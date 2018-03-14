@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rabbit Dash</title>
+		<link rel="stylesheet" type="text/css" href="/style.css">
+		<!--import bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--import javascript-->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+			<h1 style="font-size: 50px;" class="main-title"><strong><span class="italic"><%= rabbit[0].name %></span></strong></h1>
+				<div class="each-rabbit">
+					<h1> Type: 
+					<%= rabbit[0].type %>
+					</h1>
+					<h1> Color: 
+					<%= rabbit[0].color %>
+					</h1>
+					<a href="/"><input class="btn-info btn btn-lg" type="submit" name="back" value="Back!"></a>
+					<a href="/rabbits/edit/<%= rabbit[0].id %>"><input class="btn-success btn btn-lg" type="submit" name="update" value="Update Info!"></a>
+					<a href="/rabbits/destroy/<%= rabbit[0].id %>"><input class="btn-danger btn btn-lg" type="submit" name="destroy" value="Destroy the poor thing!"></a>
+				</div>
+		</div>
+	</body>
+</html>

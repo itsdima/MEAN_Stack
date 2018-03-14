@@ -1,0 +1,22 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.main-title{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+
+.italic{
+	font-style: italic;
+}
+
+.each-rabbit{
+	border-bottom: 4px solid silver;
+}
+
+#wrapper{
+	width: 50%;
+	margin: 0 auto;
+}
