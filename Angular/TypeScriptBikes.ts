@@ -1,9 +1,3 @@
-class Elephant {
-   constructor(public age: number){}
-   birthday = () => {
-      this.age++;
-   }
-}
 
 class Bike {
     constructor(public price: number, public max_speed: number) { }

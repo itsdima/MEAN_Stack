@@ -85,32 +85,53 @@
 					var test = document.getElementById('wrap');
 					var OldColor = $(test.children[0].children[0]).css('background-color');
 					function FloodFill(puzzle, start, oldColor, newColor){
-  						// function Fill(puzzle1, start1, oldColor1, newColor1){
   						var puzzle = puzzle; 
 						var xcore = 0;
 						var ycore = 0;
 						var temp; 
 						for(let x = 0; x < 13; x++){
 							for(let y = 0; y < 30; y++){
-								if(x == 0 && y == 0){
+								temp = $(puzzle.children[x].children[y]).css('background-color');
+								console.log(x);
+								console.log(y);
+								if(temp == oldColor){
+									console.log('i am here ', y);
 									$(puzzle.children[x].children[y]).css('background-color', newColor);
+									var stop1 = false;
+									var stop2 = false;
+									var check = x;
+									var check2 = x;
+									while(check < 12 && stop1 == false){
+										if($(puzzle.children[check+1].children[y]).css('background-color') == oldColor){
+											$(puzzle.children[check+1].children[y]).css('background-color', newColor);
+											check++;
+										}
+										else{
+											console.log('exiting loop');
+											stop1 = true;
+										}
+									}
+									while(check2 > 0 && stop2 == false){
+										if($(puzzle.children[check2-1].children[y]).css('background-color') == oldColor){
+											$(puzzle.children[check2-1].children[y]).css('background-color', newColor);
+											check2--;
+										}
+										else{
+											console.log('exiting loop 2');
+											stop2 = true;
+										}
+									}
+								}
+								else if($(puzzle.children[x+1].children[0]).css('background-color') != oldColor){
+									return;
 								}
 								else{
-									temp = $(puzzle.children[x].children[y]).css('background-color');
-									if(temp == newColor || temp == oldColor){
-										$(puzzle.children[x].children[y]).css('background-color', newColor);
-									}
-									else{
-										console.log('broke');
-										break;
-									}
+									break;
 								}
 							}
 						}
     					return puzzle;
 						};
- 				 		// return Fill(puzzle, start, oldColor, newColor);
-  						// }
   					FloodFill(test, [0 , 0], OldColor, NewColor);
     
   					});
