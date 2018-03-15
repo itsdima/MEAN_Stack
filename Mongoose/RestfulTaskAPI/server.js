@@ -8,6 +8,8 @@ mongoose.connect('mongodb://localhost/restfulapi');//come back and add database 
 //allows form data to be turned into object to use on the server side
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+//use angular app
+app.use(express.static( __dirname + '/HelloAngular/dist' ));
 //install moment to manipulate data-time
 const moment = require('moment');
 var Schema = mongoose.Schema;
