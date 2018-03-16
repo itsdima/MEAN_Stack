@@ -10,10 +10,18 @@ export class AppComponent {
   allTasks: any;
   oneTitle = String;
   oneDescription = String;
+  showOne = false;
   constructor(private _httpService: HttpService){}
-  ngOnInit(){
+  // ngOnInit(){
+  //   this.getTasks();
+  //   this.getOneTask();
+  // }
+  buttonAll(){
     this.getTasks();
-    this.getOneTask();
+  }
+  buttonOne(e){
+    console.log(e);
+    this.getOneTask(e);
   }
   getTasks(){
     let observable = this._httpService.getRestfulapi();
@@ -22,12 +30,13 @@ export class AppComponent {
       this.allTasks = data;
     });
   }
-  getOneTask(){
-    let OneObservable = this._httpService.getOnerestful();
+  getOneTask(e){
+    let OneObservable = this._httpService.getOnerestful(e);
     OneObservable.subscribe(data =>{
       console.log('one', data);
       this.oneTitle = data[0].title;
       this.oneDescription = data[0].description;
+      this.showOne = true;
     });
   }
 }

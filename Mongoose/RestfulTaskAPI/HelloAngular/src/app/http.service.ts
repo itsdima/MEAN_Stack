@@ -4,16 +4,16 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class HttpService {
 
-  constructor(private _http: HttpClient) { 
-  	this.getRestfulapi();
-  	this.getOnerestful();
-  }
+  constructor(private _http: HttpClient) {  }
   getRestfulapi(){
     let tempObservable = this._http.get('/restfulapi');
     return tempObservable;
   }
-  getOnerestful(){
-  	let tempObservable = this._http.get('/restfulapi/5aa98992e5e0853198118272');
+  getOnerestful(e){
+    if(e == ''){
+      e = 'nothing';
+    }
+  	let tempObservable = this._http.get('/restfulapi/'+ e);
   	return tempObservable;
   }
 }

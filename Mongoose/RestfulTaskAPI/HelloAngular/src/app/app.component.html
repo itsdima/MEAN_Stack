@@ -1,16 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    All API's
-  </h1>
-  <p *ngFor="let task of allTasks">
-    {{task['title']}} - {{task['description']}}
-  </p>
-  <h1>
-    First API:
-  </h1>
-  <p>
-    {{oneTitle}} - {{oneDescription}}
-  </p>
+  <h1>Restful Task API</h1>
+  <div>
+    <button (click)="buttonAll()">Click to get All Tasks</button>
+    <p *ngFor="let task of allTasks">
+      {{task['title']}} - {{task['description']}}
+    </p>
+  </div>
+  <div>
+    <input type="text" name="task" #input>
+    <button (click)="buttonOne(input.value)">Click to get one Task</button>
+    <p *ngIf="showOne">
+      {{oneTitle}} - {{oneDescription}}
+    </p>
+  </div>
 
 
