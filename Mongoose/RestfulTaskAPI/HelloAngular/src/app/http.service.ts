@@ -9,11 +9,11 @@ export class HttpService {
   	this.getOnerestful();
   }
   getRestfulapi(){
-  	let tempObservable = this._http.get('/restfulapi');
-  	tempObservable.subscribe(data => console.log('Got our APIs', data));
+    let tempObservable = this._http.get('/restfulapi');
+    return tempObservable;
   }
   getOnerestful(){
   	let tempObservable = this._http.get('/restfulapi/5aa98992e5e0853198118272');
-  	tempObservable.subscribe(data => console.log('Here is your One api', data));
+  	return tempObservable;
   }
 }
