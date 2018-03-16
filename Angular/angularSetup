@@ -1,0 +1,6 @@
+1. ng new client //creates a new angular app (called client in this case)
+2. in server.js -- app.use(express.static(__dirname + '/client/dist')); // this lets server know we are using angular, adds it to static roots
+3. in a separate terminal -- ng build --watch // goes through all the stuff youve changed and lets server know about it (the dist of our static)
+4. in terminal create a new service -- ng g s (service name)  //creates a new service for you to use in your angular app
+5. add and export class of newly created service in your service.ts 
+6. 
