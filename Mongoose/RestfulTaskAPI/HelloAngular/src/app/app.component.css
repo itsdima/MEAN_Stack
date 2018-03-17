@@ -1,0 +1,38 @@
+.allTasks{
+    margin-top: 10px; 
+    width: 250px;
+    display: inline-block;
+}
+.eachTask{
+    margin-top: 10px;
+    border: 2px solid rgb(37, 33, 33);
+    width: 200px;
+}
+.editTask{
+    display: inline-block;
+    width: 350px;
+    border: 2px solid rgb(212, 212, 2);
+    position: fixed;
+    top: 35%;
+    padding: 10px;
+}
+#deleteTask{
+    color: white;
+    background-color: red;
+}
+#editTask{
+    color: white;
+    background-color: orange;
+}
+.newTask{
+    color: white;
+    background-color: blue;
+}
+.cancelUpdate{
+    color: white;
+    background-color: orange;
+}
+.updateTask{
+    color: white;
+    background-color: green;
+}

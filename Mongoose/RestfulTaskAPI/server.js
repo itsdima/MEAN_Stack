@@ -49,7 +49,7 @@ app.put('/restfulapi/:id', function(req, res){
 	Restful.update({_id: req.params.id}, req.body , function(err){
 		if(err){console.log(err);}
 		else{ 
-			res.redirect('/restfulapi');
+			res.json({success: 'successfuly updated'});
 		}
 	})
 });
@@ -60,7 +60,7 @@ app.delete('/restfulapi/:id', function(req, res){
 		if(err){console.log(err);}
 		else{
 			console.log('removed');
-			res.redirect('/restfulapi');
+			res.json({success: 'success'});
 		}
 	})
 });

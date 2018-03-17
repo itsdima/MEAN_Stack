@@ -1,18 +1,68 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>Restful Task API</h1>
+<div class="container">
   <div>
-    <button (click)="buttonAll()">Click to get All Tasks</button>
-    <p *ngFor="let task of allTasks">
-      {{task['title']}} - {{task['description']}}
-    </p>
+    <h1>New Task</h1>
+    <form (submit)="create()">
+      <table>
+        <tbody>
+          <tr>
+            <td>Title:</td>
+            <td><input type="text" name="newTask.title" [(ngModel)]="newTask.title"/></td>
+          </tr>
+          <tr>
+            <td>Descripion:</td>
+            <td><input type="text" name="newTask.description" [(ngModel)]="newTask.description"/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input class="newTask" style="float: right;" type="submit" value="Create Task!"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
   </div>
-  <div>
-    <input type="text" name="task" #input>
-    <button (click)="buttonOne(input.value)">Click to get one Task</button>
-    <p *ngIf="showOne">
-      {{oneTitle}} - {{oneDescription}}
-    </p>
+  <div class="allTasks">
+    <h1>Task List</h1>
+    <button (click)="buttonAll()">Show All Tasks</button><button (click)="hideAll()">Hide</button>
+    <div *ngIf='show'>
+      <div *ngFor="let task of allTasks" class="eachTask">
+        <table style="width: 200px;">
+          <tbody>
+            <tr>
+              <td><strong>{{ task['title'] }}</strong></td>
+              <td><button style="float: right;" (click)="buttonEdit( task['_id'] )" id="editTask">Edit</button></td>
+            </tr>
+            <tr>
+              <td>{{ task['description'] }}</td>
+              <td><button style="float: right;" (click)="buttonDelete( task['_id'] )" id="deleteTask">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="edit" class="editTask">
+      <div>
+          <h1>Edit Task</h1>
+          <form (submit)="update()">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Title:</td>
+                  <td><input type="text" name="updateTask.title" [(ngModel)]="updateTask.title" value="{{ oneTitle }}"/></td>
+                </tr>
+                <tr>
+                  <td>Descripion:</td>
+                  <td><input type="text" name="updateTask.description" [(ngModel)]="updateTask.description" value="{{ oneDescription }}"/></td>
+                </tr>
+                <tr>
+                  <td><button class="cancelUpdate" (click)="cancelUpdate()">Cancel</button></td>
+                  <td><input class="updateTask" style="float: right;" type="submit" value="Update Task!"/></td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
   </div>
 
 
