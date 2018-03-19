@@ -16,7 +16,7 @@ export class ChicagoComponent implements OnInit {
   constructor(private _weather: WeatherService) { }
 
   ngOnInit() {
-    let observable = this._weather.getWeather('q=Seattle,us');
+    let observable = this._weather.getWeather('q=chicago,us');
     observable.subscribe(res => {
       console.log(res);
       this.humidity = res['main']['humidity'];
