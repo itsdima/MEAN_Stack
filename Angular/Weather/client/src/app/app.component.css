@@ -1,0 +1,28 @@
+.location{
+    display: inline-block; 
+    width: 400px; 
+    vertical-align: top; 
+}
+.picture{
+    display: inline-block; 
+    width: 400px; 
+
+}
+
+img{
+    background-size: cover; 
+    width: 350px; 
+}
+
+a{
+    margin-left: 12px; 
+    border: 1px solid black; 
+    padding: 5px; 
+}
+
+.container{
+    border: 2px solid black; 
+    padding: 5px; 
+    width: 815px; 
+    margin-top: 12px; 
+}
