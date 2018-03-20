@@ -1,0 +1,14 @@
+.container{
+    text-align: center; 
+}
+a{
+    padding: 5px; 
+    margin-left: 12px; 
+    background-color: silver; 
+}
+.home{
+    width: 400px; 
+}
+td{
+    padding-right: 10px; 
+}

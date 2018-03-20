@@ -85,53 +85,46 @@
 					var test = document.getElementById('wrap');
 					var OldColor = $(test.children[0].children[0]).css('background-color');
 					function FloodFill(puzzle, start, oldColor, newColor){
-  						var puzzle = puzzle; 
-						var xcore = 0;
-						var ycore = 0;
-						var temp; 
-						for(let x = 0; x < 13; x++){
-							for(let y = 0; y < 30; y++){
-								temp = $(puzzle.children[x].children[y]).css('background-color');
-								console.log(x);
-								console.log(y);
-								if(temp == oldColor){
-									console.log('i am here ', y);
-									$(puzzle.children[x].children[y]).css('background-color', newColor);
-									var stop1 = false;
-									var stop2 = false;
-									var check = x;
-									var check2 = x;
-									while(check < 12 && stop1 == false){
-										if($(puzzle.children[check+1].children[y]).css('background-color') == oldColor){
-											$(puzzle.children[check+1].children[y]).css('background-color', newColor);
-											check++;
-										}
-										else{
-											console.log('exiting loop');
-											stop1 = true;
-										}
-									}
-									while(check2 > 0 && stop2 == false){
-										if($(puzzle.children[check2-1].children[y]).css('background-color') == oldColor){
-											$(puzzle.children[check2-1].children[y]).css('background-color', newColor);
-											check2--;
-										}
-										else{
-											console.log('exiting loop 2');
-											stop2 = true;
-										}
-									}
-								}
-								else if($(puzzle.children[x+1].children[0]).css('background-color') != oldColor){
-									return;
-								}
-								else{
-									break;
-								}
+  						var val = oldColor;
+  						var checkpoints = [];
+  						checkpoints.push([start[0], start[1]]);
+  						function logic(y, x){
+ 							$(puzzle.children[y].children[x]).css('background-color', newColor);
+  							var possibleMoves = [];
+							if(x != 29){
+								var xplus = $(puzzle.children[y].children[x+1]).css('background-color');}
+							if(x != 0){
+								var xminus = $(puzzle.children[y].children[x-1]).css('background-color');}
+							if(y !== 12){
+								var yplus = $(puzzle.children[y+1].children[x]).css('background-color');}
+							if(y != 0){
+								var yminus = $(puzzle.children[y-1].children[x]).css('background-color');}
+  							if((y !== 0) && (yminus===val)){
+    							possibleMoves.push([y-1, x]);
+  							}
+  							if((xminus===val) && (x !== 0)){
+   								possibleMoves.push([y, x-1]);
+  							}
+  							if((xplus===val) && (x !== 29)){
+    							possibleMoves.push([y, x+1]);
+  							}
+  							if((y !== 12) && (yplus===val)){
+    							possibleMoves.push([y+1, x]);
+  							}
+  							return possibleMoves;
 							}
-						}
-    					return puzzle;
-						};
+  						while(checkpoints.length){
+    						var newCheck = [];
+    						for(var each in checkpoints){
+      						var moves = logic(checkpoints[each][0], checkpoints[each][1]);
+     						for(var eachMove in moves){
+       	 						newCheck.push(moves[eachMove]);
+      						}
+    						}
+    						checkpoints = newCheck;
+  						}
+  						return puzzle;
+					}
   					FloodFill(test, [0 , 0], OldColor, NewColor);
     
   					});
