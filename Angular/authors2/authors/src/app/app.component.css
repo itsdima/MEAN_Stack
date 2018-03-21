@@ -1,0 +1,30 @@
+.maintable{
+    border: 2px solid black; 
+    border-collapse: collapse;
+}
+
+.maintable, tr, td{
+    border: 2px solid black; 
+    padding: 5px; 
+}
+
+.newform{
+    border: 2px solid silver;
+    width: 300px; 
+    padding: 10px; 
+}
+
+.formbutton, input[type=submit]{
+    padding: 10px; 
+    color: white; 
+    background-color: rgb(26, 218, 218);
+    margin-top: 10px; 
+    margin-left: 12px; 
+}
+
+.actionsbutton{
+    padding: 8px; 
+    color: white; 
+    background-color: rgb(66, 41, 90);
+    margin-left: 10px; 
+}
