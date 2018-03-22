@@ -10,6 +10,8 @@ import { NewComponent } from './new/new.component';
 import { AuthorService } from './author.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { QuotesComponent } from './quotes/quotes.component';
+import { NewquoteComponent } from './newquote/newquote.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     HomeComponent,
     EditComponent,
-    NewComponent
+    NewComponent,
+    QuotesComponent,
+    NewquoteComponent
   ],
   imports: [
     BrowserModule,

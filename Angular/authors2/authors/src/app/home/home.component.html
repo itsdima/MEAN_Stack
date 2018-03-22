@@ -11,7 +11,7 @@
     <tbody>
       <tr *ngFor='let author of allAuthors'>
         <td>{{ author.Name}}</td>
-        <td><button (click)='edit(author._id)' class="actionsbutton">Edit</button><button (click)='delete(author._id)' class="actionsbutton">Delete</button></td>
+        <td><button (click)="quotes(author._id)" class="actionsbutton">View Quotes</button><button (click)='edit(author._id)' class="actionsbutton">Edit</button><button (click)='delete(author._id)' class="actionsbutton">Delete</button></td>
       </tr>
     </tbody>
   </table>

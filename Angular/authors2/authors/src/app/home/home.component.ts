@@ -37,5 +37,7 @@ export class HomeComponent implements OnInit {
       console.log(data);
     })
   }
-
+  quotes(id){
+    this._router.navigate(['/home/quotes/'+id]);
+  }
 }

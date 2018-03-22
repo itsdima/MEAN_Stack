@@ -1,0 +1,13 @@
+<div>
+  <a [routerLink]="['/home']">Home</a>
+  <p>Add a new Quote:</p>
+  <p *ngIf="errors">{{ errors.quote }}</p>
+  <form class="newform" (submit)='addQuote()'>
+    <label>Quote:</label>
+    <br>
+    <input type="text" name="newQuote" [(ngModel)]="newQuote.quote">
+    <br>
+    <button (click)="goBack()" class="formbutton">Cancel</button>
+    <input type="submit" name="submit">
+  </form>
+</div>

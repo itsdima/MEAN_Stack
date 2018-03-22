@@ -1,5 +1,5 @@
 <div>
-    <a [routerLink]="['home']">Home</a>
+    <a [routerLink]="['/home']">Home</a>
     <p>Update author:</p>
     <p *ngIf="errors">{{ errors }}</p>
     <form class="newform" (submit)='update()'>
@@ -7,7 +7,7 @@
       <br>
       <input type="text" name="updateAuthor" [(ngModel)]="updateAuthor">
       <br>
-      <a [routerLink]="['home']"><button class="formbutton">Cancel</button></a>
+      <a [routerLink]="['/home']"><button class="formbutton">Cancel</button></a>
       <input type="submit" name="submit">
     </form>
   </div>

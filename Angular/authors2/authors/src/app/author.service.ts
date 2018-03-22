@@ -25,4 +25,15 @@ export class AuthorService {
     var body = {Name: author};
     return this._author.put('/author/'+id, body);
   }
+  addQuote(id, body){
+    return this._author.put('/author/quote/'+id, body);
+  }
+  addVote(id, index, value){
+    var body = {index: index, votes: value}
+    return this._author.put('/author/vote/'+id, body);
+  }
+  deleteQuote(id, index){
+    var body = {index: index}
+    return this._author.put('/author/delete/'+id, body);
+  }
 }

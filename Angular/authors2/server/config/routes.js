@@ -60,4 +60,62 @@ module.exports = (app) => {
             }
         });
     });
+
+    app.put('/author/quote/:id', (req, res)=> {
+        Author.findOne({_id: req.params.id}, (err, author)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(req.body);
+                author.quotes.push(req.body);
+                author.save((err)=>{
+                    if(err){
+                        res.json(err);
+                    }
+                    else{
+                        res.json({success: 'succesfully added'});
+                    }
+                })
+            }
+        })
+    });
+
+    app.put('/author/vote/:id', (req, res) => {
+        Author.findOne({_id: req.params.id}, (err, author)=>{
+            if(err){console.log(err)}
+            else{
+                author.quotes[req.body.index].votes += req.body.votes;
+                author.save((err)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                        res.json({success: 'votes are in'});
+                    }
+                });
+            }
+        })
+    })
+
+    app.put('/author/delete/:id', (req, res)=>{
+        Author.findOne({_id: req.params.id}, (err, author)=>{
+            if(err){console.log(err)}
+            else{
+                author.quotes.splice(req.body.index, 1);
+                author.save((err)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                        res.json({success: 'deleted'});
+                    }
+                })
+            }
+        })
+    })
+
+    app.all("*", (req,res,next)=>{
+        res.sendFile(path.resolve("./authors/dist/index.html"))
+    });
 }
