@@ -1,0 +1,29 @@
+<div class="outlet">
+  <h1>Edit This Product</h1>
+  <form class="createForm" (submit)="update()">
+    <table>
+      <tbody>
+        <tr>
+          <td>Title</td>
+          <td>&nbsp; <input type="text" name="title" [(ngModel)]="updateProduct.title"></td>
+          <td><p class="error" *ngIf="errors['title']">{{ errors.title }}</p></td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td>$<input type="number" name="price" [(ngModel)]="updateProduct.price"></td>
+          <td><p class="error" *ngIf="errors['price']">{{ errors.price }}</p></td>
+        </tr>
+        <tr>
+          <td>Image url</td>
+          <td>&nbsp; <input type="text" name="url" [(ngModel)]="updateProduct.url"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button class="formbutton" type="submit">Update</button><a [routerLink]="['/products']"><button class="formbutton">Cancel</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+

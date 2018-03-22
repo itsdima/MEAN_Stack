@@ -1,0 +1,11 @@
+<div class="outlet">
+  <h1>Products List</h1>
+  <div style="text-align: left;">
+    <div class="each-product" *ngFor="let each of allProducts">
+        <img [src]="invalidPath" onError="this.src='http://mp3bytes.com/assets/images/empty.png'" src="{{ each.url }}" alt="product">
+        <p>{{each.title}}</p>
+        <p>${{each.price}}</p>
+        <button (click)='edit(each._id)' class="formbutton">Edit</button><button (click)='delete(each._id)' class="formbutton">Delete</button>
+    </div>
+  </div>
+</div>
